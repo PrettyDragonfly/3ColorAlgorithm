@@ -21,3 +21,9 @@ if __name__ == '__main__':
 
     # Initialise C
     initialiseArrays(unaire, contrainte)
+
+    nbBin = np.count_nonzero(contrainte == True)
+    print(nbBin)
+
+    nbUn = np.count_nonzero(unaire == True)
+    print(nbUn)
