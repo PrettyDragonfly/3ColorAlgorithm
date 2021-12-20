@@ -6,6 +6,7 @@ n = 10
 def initialiseArrays(unaire, contrainte):
     unaire[1][0] = True
     unaire[1][2] = True
+    unaire[1][1] = True
     contrainte[1][2][2][0] = True
     contrainte[1][3][0][2] = True
     contrainte[1][3][1][1] = True
@@ -27,3 +28,14 @@ if __name__ == '__main__':
 
     nbUn = np.count_nonzero(unaire == True)
     print(nbUn)
+
+    while (nbUn > 0) or (nbBin > 0):
+        if nbUn >= 3:
+            for i in range (n):
+                if unaire[i][0] == True and unaire[i][1] == True and unaire[i][2] == True:
+                    print("Il n'y a pas de solution. Good bye!")
+                    exit(0)
+                else:
+                    print("Pour l'instant c'est ok!")
+        else:
+            print("Pour l'instant c'est ok!")
