@@ -1,4 +1,5 @@
 import numpy as np
+from random import *
 
 # number of vertices
 n = 10
@@ -87,6 +88,7 @@ if __name__ == '__main__':
                                 if (constraints[x][y][1][c] is True and constraints[x][z][2][c2] is True) \
                                         or (constraints[x][y][2][c] is True and constraints[x][z][1][c2] is True):
                                     constraints[y][z][c][c2] = True
+                break
             elif unary[x][1]:
                 for y in range(n):
                     for c in range(2):
@@ -97,6 +99,7 @@ if __name__ == '__main__':
                                 if (constraints[x][y][0][c] is True and constraints[x][z][2][c2] is True) \
                                         or (constraints[x][y][2][c] is True and constraints[x][z][0][c2] is True):
                                     constraints[y][z][c][c2] = True
+                break
             elif unary[x][2]:
                 for y in range(n):
                     for c in range(2):
@@ -107,5 +110,141 @@ if __name__ == '__main__':
                                 if (constraints[x][y][0][c] is True and constraints[x][z][1][c2] is True) \
                                         or (constraints[x][y][1][c] is True and constraints[x][z][0][c2] is True):
                                     constraints[y][z][c][c2] = True
+                break
+        # case 4
+        if nbUn == 0:
+            # There are only binaries constraints
+            for x in range(n):
+                for y in range(n):
+                    # tirer un nombre au hasard
+                    random = randint(0,3)
+                    if constraints[x][y][0][0] is True:
+                        if random == 0:
+                            unary[x][0] = True
+                            unary[y][1] = True
+                        elif random == 1:
+                            unary[x][0] = True
+                            unary[y][2] = True
+                        elif random == 2:
+                            unary[x][1] = True
+                            unary[y][0] = True
+                        elif random == 3:
+                            unary[x][2] = True
+                            unary[y][0] = True
+                        break
+                    elif constraints[x][y][0][1] is True:
+                        if random == 0:
+                            unary[x][0] = True
+                            unary[y][0] = True
+                        elif random == 1:
+                            unary[x][0] = True
+                            unary[y][2] = True
+                        elif random == 2:
+                            unary[x][1] = True
+                            unary[y][1] = True
+                        elif random == 3:
+                            unary[x][2] = True
+                            unary[y][1] = True
+                        break
+                    elif constraints[x][y][0][2] is True:
+                        if random == 0:
+                            unary[x][0] = True
+                            unary[y][0] = True
+                        elif random == 1:
+                            unary[x][0] = True
+                            unary[y][1] = True
+                        elif random == 2:
+                            unary[x][1] = True
+                            unary[y][2] = True
+                        elif random == 3:
+                            unary[x][2] = True
+                            unary[y][2] = True
+                        break
+                    elif constraints[x][y][1][0] is True:
+                        if random == 0:
+                            unary[x][1] = True
+                            unary[y][1] = True
+                        elif random == 1:
+                            unary[x][1] = True
+                            unary[y][2] = True
+                        elif random == 2:
+                            unary[x][0] = True
+                            unary[y][0] = True
+                        elif random == 3:
+                            unary[x][2] = True
+                            unary[y][0] = True
+                        break
+                    elif constraints[x][y][1][1] is True:
+                        if random == 0:
+                            unary[x][1] = True
+                            unary[y][0] = True
+                        elif random == 1:
+                            unary[x][1] = True
+                            unary[y][2] = True
+                        elif random == 2:
+                            unary[x][0] = True
+                            unary[y][1] = True
+                        elif random == 3:
+                            unary[x][2] = True
+                            unary[y][1] = True
+                        break
+                    elif constraints[x][y][1][2] is True:
+                        if random == 0:
+                            unary[x][1] = True
+                            unary[y][0] = True
+                        elif random == 1:
+                            unary[x][1] = True
+                            unary[y][1] = True
+                        elif random == 2:
+                            unary[x][0] = True
+                            unary[y][2] = True
+                        elif random == 3:
+                            unary[x][2] = True
+                            unary[y][2] = True
+                        break
+                    elif constraints[x][y][2][0] is True:
+                        if random == 0:
+                            unary[x][2] = True
+                            unary[y][1] = True
+                        elif random == 1:
+                            unary[x][2] = True
+                            unary[y][1] = True
+                        elif random == 2:
+                            unary[x][0] = True
+                            unary[y][0] = True
+                        elif random == 3:
+                            unary[x][1] = True
+                            unary[y][0] = True
+                        break
+                    elif constraints[x][y][2][1] is True:
+                        if random == 0:
+                            unary[x][2] = True
+                            unary[y][0] = True
+                        elif random == 1:
+                            unary[x][2] = True
+                            unary[y][2] = True
+                        elif random == 2:
+                            unary[x][0] = True
+                            unary[y][1] = True
+                        elif random == 3:
+                            unary[x][1] = True
+                            unary[y][1] = True
+                        break
+                    elif constraints[x][y][2][2] is True:
+                        if random == 0:
+                            unary[x][2] = True
+                            unary[y][0] = True
+                        elif random == 1:
+                            unary[x][2] = True
+                            unary[y][1] = True
+                        elif random == 2:
+                            unary[x][0] = True
+                            unary[y][2] = True
+                        elif random == 3:
+                            unary[x][1] = True
+                            unary[y][2] = True
+                        break
         nbBin = np.count_nonzero(constraints is True)
         exit(0)
+
+# ne pas oublier de remettre à jour les compteurs de contraintes
