@@ -32,63 +32,57 @@ if __name__ == '__main__':
 
     while (nbUn > 0) or (nbBin > 0):
         if nbUn >= 3:
-            for i in range(n):
+            for x in range(n):
                 # case 1
-                if unary[i][0] is True and unary[i][1] is True and unary[i][2] is True:
+                if unary[x][0] is True and unary[x][1] is True and unary[x][2] is True:
                     print("Il n'y a pas de solution. Good bye!")
                     exit(0)
-        for i in range(n):
+        for x in range(n):
             # case 2
-            if unary[i][0] is True and unary[i][1] is True:
-                # i is Color 2
-                for j in range(n):
+            if unary[x][0] is True and unary[x][1] is True:
+                # x is Color 2
+                for y in range(n):
                     for k in range(2):
                         # delete all the constraints useless
-                        constraints[i][j][0][k] = False
-                        constraints[i][j][1][k] = False
-                        if constraints[i][j][2][k] is True:
-                            unary[j][k] = True
-                            constraints[i][j][2][k] = False
+                        constraints[x][y][0][k] = False
+                        constraints[x][y][1][k] = False
+                        if constraints[x][y][2][k] is True:
+                            unary[y][k] = True
+                            constraints[x][y][2][k] = False
                 nbBin = np.count_nonzero(constraints is True)
                 break
-            elif unary[i][0] is True and unary[i][2] is True:
-                # i is Color 1
-                for j in range(n):
+            elif unary[x][0] is True and unary[x][2] is True:
+                # x is Color 1
+                for y in range(n):
                     for k in range(2):
                         # delete all the constraints useless
-                        constraints[i][j][0][k] = False
-                        constraints[i][j][2][k] = False
-                        if constraints[i][j][1][k] is True:
-                            unary[j][k] = True
-                            constraints[i][j][1][k] = False
+                        constraints[x][y][0][k] = False
+                        constraints[x][y][2][k] = False
+                        if constraints[x][y][1][k] is True:
+                            unary[y][k] = True
+                            constraints[x][y][1][k] = False
                 nbBin = np.count_nonzero(constraints is True)
                 break
-            elif unary[i][1] is True and unary[i][2] is True:
-                # i is color 0
-                for j in range(n):
+            elif unary[x][1] is True and unary[x][2] is True:
+                # x is color 0
+                for y in range(n):
                     for k in range(2):
                         # delete all the constraints useless
-                        constraints[i][j][1][k] = False
-                        constraints[i][j][2][k] = False
-                        if constraints[i][j][0][k] is True:
-                            unary[j][k] = True
-                            constraints[i][j][0][k] = False
+                        constraints[x][y][1][k] = False
+                        constraints[x][y][2][k] = False
+                        if constraints[x][y][0][k] is True:
+                            unary[y][k] = True
+                            constraints[x][y][0][k] = False
                 nbBin = np.count_nonzero(constraints is True)
                 break
         # case 3
-        for i in range(n):
-            if unary[i][0]:
-                for j in range(n):
-                    for k in range(2):
-                        constraints[i][j][0][k] = False
-
-            elif unary[i][1]:
-                for j in range(n):
-                    for k in range(2):
-                        constraints[i][j][1][k] = False
-            elif unary[i][2]:
-                for j in range(n):
-                    for k in range(2):
-                        constraints[i][j][2][k] = False
+        for x in range(n):
+            for c in range(2):
+                # unary contraint for x color c
+                if unary[x][c]:
+                    for y in range(n):
+                        for k in range(2):
+                            if constraints[x][y][c][k] is True:
+                                constraints[x][y][c][k] = False
         nbBin = np.count_nonzero(constraints is True)
         exit(0)
