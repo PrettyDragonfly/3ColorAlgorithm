@@ -1,9 +1,9 @@
 import numpy as np
 from random import *
+from fileInput import readFile
 
 # number of vertices
 n = 5
-
 
 def initialise_arrays(unary, constraints):
     unary[0][1] = True
@@ -27,11 +27,11 @@ def initialise_arrays(unary, constraints):
 
 
 if __name__ == '__main__':
-    unary = np.full((n, 3), False)
-    constraints = np.full((n, n, 3, 3), False)
+
+    unary, constraints, n = readFile()
 
     # Initialise C
-    initialise_arrays(unary, constraints)
+    # initialise_arrays(unary, constraints)
 
     nbBin = np.count_nonzero(constraints == True)
 
